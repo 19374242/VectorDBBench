@@ -37,6 +37,7 @@ class DB(Enum):
     Chroma = "Chroma"
     AWSOpenSearch = "OpenSearch"
     Test = "test"
+    VikingDB = "VikingDB"
 
 
     @property
@@ -97,6 +98,10 @@ class DB(Enum):
         if self == DB.AWSOpenSearch:
             from .aws_opensearch.aws_opensearch import AWSOpenSearch
             return AWSOpenSearch
+        
+        if self == DB.VikingDB:
+            from .vikingdb.vikingdb import VikingDB
+            return VikingDB
 
     @property
     def config_cls(self) -> Type[DBConfig]:
@@ -156,6 +161,10 @@ class DB(Enum):
         if self == DB.AWSOpenSearch:
             from .aws_opensearch.config import AWSOpenSearchConfig
             return AWSOpenSearchConfig
+        
+        if self == DB.VikingDB:
+            from .vikingdb.config import VikingDBConfig
+            return VikingDBConfig
 
     def case_config_cls(self, index_type: IndexType | None = None) -> Type[DBCaseConfig]:
         if self == DB.Milvus:
@@ -197,6 +206,10 @@ class DB(Enum):
         if self == DB.PgDiskANN:
             from .pgdiskann.config import _pgdiskann_case_config
             return _pgdiskann_case_config.get(index_type)
+        
+        if self == DB.VikingDB:
+            from .vikingdb.config import HNSWConfig
+            return HNSWConfig
 
         # DB.Pinecone, DB.Chroma, DB.Redis
         return EmptyDBCaseConfig
