@@ -163,6 +163,7 @@ class BenchMarkRunner:
                 try:
                     log.info(f"[{idx+1}/{running_task.num_cases()}] start case: {runner.display()}, drop_old={drop_old}")
                     case_res.metrics = runner.run(drop_old)
+                    # case_res.metrics = runner.run(False)
                     log.info(f"[{idx+1}/{running_task.num_cases()}] finish case: {runner.display()}, "
                              f"result={case_res.metrics}, label={case_res.label}")
 

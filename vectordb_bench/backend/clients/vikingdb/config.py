@@ -8,8 +8,8 @@ class VikingDBConfig(DBConfig):
     ak: str = ""
     sk: str = ""
     host: str = ""
-    region: str = ""
-    scheme: str = ""
+    region: str = "cn-beijing"
+    scheme: str = "http"
 
     def to_dict(self) -> dict:
         return {
@@ -22,8 +22,8 @@ class VikingDBConfig(DBConfig):
     
 class VikingDBIndexConfig(BaseModel):
     index_type: ApiIndexType = ApiIndexType.HNSW
-    metric_type: MetricType = MetricType.IP
-    quant: QuantType = QuantType.Int8
+    metric_type: MetricType = MetricType.COSINE
+    quant: QuantType = QuantType.Float
     cpu_quota: int = 2
     scalar_index: list = None
 

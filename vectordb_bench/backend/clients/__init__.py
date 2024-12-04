@@ -38,6 +38,8 @@ class DB(Enum):
     AWSOpenSearch = "OpenSearch"
     Test = "test"
     VikingDB = "VikingDB"
+    TencentVectorDB = "TencentVectorDB"
+    DashVector = "DashVector"
 
 
     @property
@@ -102,6 +104,14 @@ class DB(Enum):
         if self == DB.VikingDB:
             from .vikingdb.vikingdb import VikingDB
             return VikingDB
+        
+        if self == DB.TencentVectorDB:
+            from .tencent_vectordb.tencent_vectordb import TencentVectorDB
+            return TencentVectorDB
+        
+        if self == DB.DashVector:
+            from.dash_vector.dash_vector import DashVector
+            return DashVector
 
     @property
     def config_cls(self) -> Type[DBConfig]:
@@ -165,6 +175,14 @@ class DB(Enum):
         if self == DB.VikingDB:
             from .vikingdb.config import VikingDBConfig
             return VikingDBConfig
+        
+        if self == DB.TencentVectorDB:
+            from .tencent_vectordb.config import TencentVectorDBConfig
+            return TencentVectorDBConfig
+        
+        if self == DB.DashVector:
+            from.dash_vector.config import DashVectorConfig
+            return DashVectorConfig
 
     def case_config_cls(self, index_type: IndexType | None = None) -> Type[DBCaseConfig]:
         if self == DB.Milvus:
@@ -210,6 +228,15 @@ class DB(Enum):
         if self == DB.VikingDB:
             from .vikingdb.config import HNSWConfig
             return HNSWConfig
+        
+        if self == DB.TencentVectorDB:
+            from .tencent_vectordb.config import HNSWConfig
+            return HNSWConfig
+        
+        if self == DB.DashVector:
+            from.dash_vector.config import HNSWConfig
+            return HNSWConfig
+
 
         # DB.Pinecone, DB.Chroma, DB.Redis
         return EmptyDBCaseConfig

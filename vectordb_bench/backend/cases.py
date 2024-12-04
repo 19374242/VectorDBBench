@@ -174,6 +174,7 @@ Results will show index building time, recall, and maximum QPS."""
 class Performance768D1M1P(PerformanceCase):
     case_id: CaseType = CaseType.Performance768D1M1P
     filter_rate: float | int | None = 0.01
+    # filter_rate: float | int | None = 0.1
     dataset: DatasetManager = Dataset.COHERE.manager(1_000_000)
     name: str = "Filtering Search Performance Test (1M Dataset, 768 Dim, Filter 1%)"
     description: str = """This case tests the search performance of a vector database with a medium dataset (<b>Cohere 1M vectors</b>, 768 dimensions) under a low filtering rate (<b>1% vectors</b>), at varying parallel levels.

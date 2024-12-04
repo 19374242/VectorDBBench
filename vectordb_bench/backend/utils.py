@@ -70,5 +70,8 @@ def compose_gt_file(filters: int | float | str | None = None) -> str:
 
     if filters == 0.99:
         return "neighbors_tail_1p.parquet"
+    
+    # if filters == 0.1:
+    #     return "neighbors_head_10p.parquet"
 
     raise ValueError(f"Filters not supported: {filters}")
